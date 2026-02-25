@@ -10,6 +10,15 @@ import java.util.List;
 public class ExerciseSelectionService {
     private final List<ExerciseSelection> exerciseSelections = new ArrayList<>();
     private long nextMuscleGroupID = 1;
+
+    public ExerciseSelectionService() {
+        ExerciseSelection chest = new ExerciseSelection();
+        chest.setMuscleGroupID(nextMuscleGroupID++);
+        chest.setMuscleGroup("Chest");
+        chest.setExercises(List.of("Flat Bench Press", "Incline Bench Press", "Chest Fly", "Push Up"));
+
+        exerciseSelections.add(chest);
+    }
     public ExerciseSelection addExerciseSelection(ExerciseSelection exerciseSelection)
     {
         exerciseSelection.setMuscleGroupID(nextMuscleGroupID++);

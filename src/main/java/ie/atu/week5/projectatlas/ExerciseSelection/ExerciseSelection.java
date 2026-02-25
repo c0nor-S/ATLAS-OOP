@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class ExerciseSelection {
@@ -18,4 +20,6 @@ public class ExerciseSelection {
 
     @NotBlank(message = "Muscle Group Is Required")
     private String muscleGroup;
+
+    private List<String> exercises;
 }
