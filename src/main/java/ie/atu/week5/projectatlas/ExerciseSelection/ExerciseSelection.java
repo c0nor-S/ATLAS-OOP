@@ -16,6 +16,6 @@ public class ExerciseSelection {
         this.muscleGroupID = muscleGroupID;
     }
 
-    @NotBlank(message = "Muscle Group Is Require")
+    @NotBlank(message = "Muscle Group Is Required")
     private String muscleGroup;
 }
