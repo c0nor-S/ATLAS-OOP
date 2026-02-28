@@ -12,18 +12,21 @@ import java.util.List;
 @RestController
 @RequestMapping("/exerciseSelection")
 public class ExerciseSelectionController {
+
     private final ExerciseSelectionService exerciseSelectionService;
 
     public ExerciseSelectionController(ExerciseSelectionService exerciseSelectionService) {
         this.exerciseSelectionService = exerciseSelectionService;
     }
-    @PostMapping("/addExercise")
-    public ResponseEntity<ExerciseSelection> addExercise(@Valid @RequestBody ExerciseSelection exerciseSelection) {
-        ExerciseSelection saved = exerciseSelectionService.addExerciseSelection(exerciseSelection);
-        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
-    }
     @GetMapping("/allExercises")
-    public ResponseEntity<List<ExerciseSelection>> getAllExercises() {
-        return ResponseEntity.ok(exerciseSelectionService.getAllExerciseSelections());
+    public ResponseEntity<ExerciseSelection> getAllExerciseSelections(@RequestParam String muscleGroup) {
+        ExerciseSelection result = exerciseSelectionService.getExercisesByMuscleGroup(muscleGroup);
+
+        if (result != null) {
+            return ResponseEntity.ok(result);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
     }
 }
