@@ -12,6 +12,7 @@ public class ExerciseSelection {
     @NotBlank(message = "Muscle Group Is Required")
     private String muscleGroup;
 
+    @NotBlank(message = "At Least One Exercise Is Required")
     private List<String> exercises;
 
     public Long getMuscleGroupID() {
