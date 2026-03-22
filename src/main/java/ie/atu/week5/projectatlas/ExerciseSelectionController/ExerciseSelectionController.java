@@ -18,7 +18,7 @@ public class ExerciseSelectionController {
     public ExerciseSelectionController(ExerciseSelectionService exerciseSelectionService) {
         this.exerciseSelectionService = exerciseSelectionService;
     }
-    @GetMapping("/allExercises")
+    @GetMapping("/byMuscle")
     public ResponseEntity<ExerciseSelection> getAllExerciseSelections(@RequestParam String muscleGroup) {
         ExerciseSelection result = exerciseSelectionService.getExercisesByMuscleGroup(muscleGroup);
 
@@ -28,5 +28,9 @@ public class ExerciseSelectionController {
         else {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
+    }
+    @GetMapping
+    public ResponseEntity<List<ExerciseSelection>> getAllExerciseSelections() {
+        return ResponseEntity.ok(exerciseSelectionService.getAllExerciseSelections());
     }
 }
