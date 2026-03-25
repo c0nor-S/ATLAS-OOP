@@ -38,8 +38,15 @@ public class WorkoutPlan {
         this.exercises = exercises;
     }
 
+    public int getTotalVolume() {
+        if (exercises == null) {
+            return 0;
+        }
+        return exercises.stream().mapToInt(WorkoutExercise::getVolume).sum();
+    }
+
     public static class WorkoutExercise {
-        @NotBlank(message = "Exersice Name Is Required")
+        @NotBlank(message = "Exercise Name Is Required")
         private String exerciseName;
 
         @Positive(message = "Reps Must Be Greater Than Zero")
@@ -47,6 +54,9 @@ public class WorkoutPlan {
 
         @Positive(message = "Sets Must Be Greater Than Zero")
         private int sets;
+
+        @Positive(message = "Weight Is Required")
+        private int weight;
 
         public String getExerciseName() {
             return exerciseName;
@@ -70,6 +80,18 @@ public class WorkoutPlan {
 
         public void setSets(int sets) {
             this.sets = sets;
+        }
+
+        public int getWeight() {
+            return weight;
+        }
+
+        public void setWeight(int weight) {
+            this.weight = weight;
+        }
+
+        public int getVolume() {
+            return reps * sets * weight;
         }
     }
 }
